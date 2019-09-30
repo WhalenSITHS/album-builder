@@ -82,7 +82,8 @@ html{
 .display-album{
     width: 80vw;
     justify-content: space-around;
+    height: 30vh;
 }
 .display-album img{
-    height: 20%;
+    height: 20rem;
 }

@@ -32,6 +32,49 @@ class UI {
     }
 }
 
+class Store {
+    static getAlbums(){
+        let albums;
+        if(localStorage.getItem("albums") === null) {
+            albums = [];
+        } else {
+            albums = JSON.parse(localStorage.getItem("albums"));
+        }
+        return albums;
+    }
+
+    static displayAlbums() {
+        const albums = Store.getAlbums();
+        albums.forEach(function(album) {
+            const ui = new UI;
+
+            ui.addAlbumToList(album);
+        });
+    }
+
+    static addAlbum(album){
+        const albums = Store.getAlbums();
+        albums.push(album);
+
+        localStorage.setItem("albums", JSON.stringify(albums));
+    }
+
+    static removeAlbum(title){
+        const albums = Store.getAlbums();
+        albums.forEach(function(album, index){
+            if(album.title === title) {
+             albums.splice(index, 1);
+            }
+           });
+       
+           localStorage.setItem('albums', JSON.stringify(albums));
+    }
+}
+
+//DOM LOAD
+document.addEventListener("DOMContentLoaded", Store.displayAlbums);
+
+
 //Event Listener for Album
 document.getElementById('form').addEventListener('submit', function(e){
     //Get Values
@@ -46,6 +89,8 @@ document.getElementById('form').addEventListener('submit', function(e){
     const ui = new UI();
     console.log(ui);
 
+    Store.addAlbum(album);
+
     ui.addAlbumToList(album);
 
     ui.clearFields();
@@ -58,9 +103,16 @@ document.getElementById('form').addEventListener('submit', function(e){
 document.querySelector('.display').addEventListener('click', function(e){
     const ui = new UI();
     
+    
+
     ui.deleteAlbum(e.target);
+
+    Store.removeAlbum(e.target.previousElementSibling.previousElementSibling.previousElementSibling.textContent);
+    
 
     ui.clearFields();
 
     e.preventDefault();
+
+    //Store.removeAlbum(e.target.parentElement)
 })
