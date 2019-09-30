@@ -87,3 +87,14 @@ html{
 .display-album img{
     height: 20rem;
 }
+
+.display-all{
+    display: flex;
+    flex-wrap: wrap;
+    width: 80vw;
+    justify-content: space-around;
+
+}
+.display-all img{
+    height: 20rem;
+}

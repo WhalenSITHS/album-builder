@@ -19,6 +19,12 @@ class UI {
 
     }
 
+    addAll(album){
+        let html = '<div class="display-cover"><img src="%url%" alt=""></div>'
+        let newHtml = html.replace('%url%', album.url);
+        document.querySelector('.display-all').insertAdjacentHTML('beforeend', newHtml);
+    }
+
     clearFields(){
         document.getElementById('title').value = '';
         document.getElementById('artist').value = '';
@@ -91,7 +97,10 @@ document.getElementById('form').addEventListener('submit', function(e){
 
     Store.addAlbum(album);
 
+    
+
     ui.addAlbumToList(album);
+    ui.addAll(album);
 
     ui.clearFields();
 
@@ -116,3 +125,4 @@ document.querySelector('.display').addEventListener('click', function(e){
 
     //Store.removeAlbum(e.target.parentElement)
 })
+
