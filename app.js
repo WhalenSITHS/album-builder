@@ -27,10 +27,10 @@ class UI {
       target.parentElement.remove();
     }
   }
-};
+}
 
 //Event Listener for Album
-document.getElementById("form").addEventListener("submit", function(e) {
+document.getElementById("form").addEventListener("submit", function (e) {
   //Get Values
   const title = document.getElementById("title").value;
   const artist = document.getElementById("artist").value;
@@ -52,7 +52,7 @@ document.getElementById("form").addEventListener("submit", function(e) {
 
 //delete
 
-document.querySelector(".display").addEventListener("click", function(e) {
+document.querySelector(".display").addEventListener("click", function (e) {
   const ui = new UI();
 
   ui.deleteAlbum(e.target);
@@ -61,7 +61,3 @@ document.querySelector(".display").addEventListener("click", function(e) {
 
   e.preventDefault();
 });
-
-
-
-
